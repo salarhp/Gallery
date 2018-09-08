@@ -1,0 +1,24 @@
+<% if @images.exists? %>
+  <% @images.each_slice(4) do |image| %>
+    <div class= "row">
+      <% image.each do |image| %>
+        <div class="grid_4">
+          <div class="gall_block">
+            <div class="maxheight">
+              <a href="<%= image.image_url() %>" class="gall_item" data-title= "<%= image.image_title %>"></a>
+              <div class="gall_bot">
+              <div class="text1"> <%= image.image_title %> </div>
+              <%= image.image_description %>
+              <br>
+              </a>
+              <a href="#" class="btn"><%= image_tag image.image_url(:thumb) %></a></div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% else %>
+  <p> there are no images. </p>
+<% end %>
+

@@ -1,0 +1,28 @@
+<h2>add new post</h2>
+<%= form_for @image, :html => {:multipart => true} do |f| %>
+    <% if @image.errors.any? %>
+        <% @image.errors.full_messages.each do |msg| %>
+            <div class= "alert alert-danger"><%= msg %></div>
+        <% end %>
+    <% end %>
+
+	<div class = "from-group">
+		<%= f.label :image_title %>
+		<%= f.text_field :image_title ,class: 'form-control'%>
+	</div>
+	<div class = "from-group">
+		<%= f.label :category %>
+		<%= f.select :category_id,Category.all.collect {|x| [x.name, x.id]}, {:include_blank => 'select one'} ,class: 'form-control'%>
+	</div>
+	<div class = "from-group">
+		<%= f.label :image_description %>
+		<%= f.text_area :image_description, class: 'form-control' %>
+	</div>
+    <div class="form-control">
+        <%= f.label :image %>
+        <%= f.file_field :image %>
+    </div>
+	<%= f.submit "submit", class:'btn btn-primary' %>
+	<%= link_to "cancel", images_path, class:'btn btn-default' %>
+
+<% end %>
